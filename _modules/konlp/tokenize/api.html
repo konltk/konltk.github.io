@@ -55,11 +55,11 @@
 <span class="kn">from</span> <span class="nn">six</span> <span class="k">import</span> <span class="n">add_metaclass</span>
 
 
-<div class="viewcode-block" id="TokenizerI"><a class="viewcode-back" href="../../../docs/source/konlp.tokenize.html#konlp.tokenize.api.TokenizerI">[docs]</a><span class="nd">@add_metaclass</span><span class="p">(</span><span class="n">ABCMeta</span><span class="p">)</span>
+<div class="viewcode-block" id="TokenizerI"><a class="viewcode-back" href="../../../apidoc/konlp.tokenize.html#konlp.tokenize.api.TokenizerI">[docs]</a><span class="nd">@add_metaclass</span><span class="p">(</span><span class="n">ABCMeta</span><span class="p">)</span>
 <span class="k">class</span> <span class="nc">TokenizerI</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Tokenizer Interface&quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="TokenizerI.tokenize"><a class="viewcode-back" href="../../../docs/source/konlp.tokenize.html#konlp.tokenize.api.TokenizerI.tokenize">[docs]</a>    <span class="nd">@abstractmethod</span>
+<div class="viewcode-block" id="TokenizerI.tokenize"><a class="viewcode-back" href="../../../apidoc/konlp.tokenize.html#konlp.tokenize.api.TokenizerI.tokenize">[docs]</a>    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">tokenize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">string</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return a tokenized copy of string.</span>
 
@@ -76,10 +76,10 @@
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div></div>
 
 
-<div class="viewcode-block" id="SimpleTokenizer"><a class="viewcode-back" href="../../../docs/source/konlp.tokenize.html#konlp.tokenize.api.SimpleTokenizer">[docs]</a><span class="k">class</span> <span class="nc">SimpleTokenizer</span><span class="p">(</span><span class="n">TokenizerI</span><span class="p">):</span>
+<div class="viewcode-block" id="SimpleTokenizer"><a class="viewcode-back" href="../../../apidoc/konlp.tokenize.html#konlp.tokenize.api.SimpleTokenizer">[docs]</a><span class="k">class</span> <span class="nc">SimpleTokenizer</span><span class="p">(</span><span class="n">TokenizerI</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;For an example about how to inherit the class above&quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="SimpleTokenizer.tokenize"><a class="viewcode-back" href="../../../docs/source/konlp.tokenize.html#konlp.tokenize.api.SimpleTokenizer.tokenize">[docs]</a>    <span class="k">def</span> <span class="nf">tokenize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">string</span><span class="p">):</span>
+<div class="viewcode-block" id="SimpleTokenizer.tokenize"><a class="viewcode-back" href="../../../apidoc/konlp.tokenize.html#konlp.tokenize.api.SimpleTokenizer.tokenize">[docs]</a>    <span class="k">def</span> <span class="nf">tokenize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">string</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Simple string tokenizer by white-space character</span>
 
 <span class="sd">        Args:</span>
