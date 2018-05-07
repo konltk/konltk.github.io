@@ -55,11 +55,11 @@
 <span class="kn">from</span> <span class="nn">six</span> <span class="k">import</span> <span class="n">add_metaclass</span>
 
 
-<div class="viewcode-block" id="StemmerI"><a class="viewcode-back" href="../../../apidoc/konlp.stem.html#konlp.stem.api.StemmerI">[docs]</a><span class="nd">@add_metaclass</span><span class="p">(</span><span class="n">ABCMeta</span><span class="p">)</span>
+<div class="viewcode-block" id="StemmerI"><a class="viewcode-back" href="../../../api/konlp.stem.html#konlp.stem.api.StemmerI">[docs]</a><span class="nd">@add_metaclass</span><span class="p">(</span><span class="n">ABCMeta</span><span class="p">)</span>
 <span class="k">class</span> <span class="nc">StemmerI</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Stemmer Interface&quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="StemmerI.stem"><a class="viewcode-back" href="../../../apidoc/konlp.stem.html#konlp.stem.api.StemmerI.stem">[docs]</a>    <span class="nd">@abstractmethod</span>
+<div class="viewcode-block" id="StemmerI.stem"><a class="viewcode-back" href="../../../api/konlp.stem.html#konlp.stem.api.StemmerI.stem">[docs]</a>    <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">stem</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">token</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Strip affixes from the token and return the stem.</span>
 
@@ -76,10 +76,10 @@
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div></div>
 
 
-<div class="viewcode-block" id="SimpleStemmer"><a class="viewcode-back" href="../../../apidoc/konlp.stem.html#konlp.stem.api.SimpleStemmer">[docs]</a><span class="k">class</span> <span class="nc">SimpleStemmer</span><span class="p">(</span><span class="n">StemmerI</span><span class="p">):</span>
+<div class="viewcode-block" id="SimpleStemmer"><a class="viewcode-back" href="../../../api/konlp.stem.html#konlp.stem.api.SimpleStemmer">[docs]</a><span class="k">class</span> <span class="nc">SimpleStemmer</span><span class="p">(</span><span class="n">StemmerI</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;For an example about how to use the interface above&quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="SimpleStemmer.stem"><a class="viewcode-back" href="../../../apidoc/konlp.stem.html#konlp.stem.api.SimpleStemmer.stem">[docs]</a>    <span class="k">def</span> <span class="nf">stem</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">token</span><span class="p">):</span>
+<div class="viewcode-block" id="SimpleStemmer.stem"><a class="viewcode-back" href="../../../api/konlp.stem.html#konlp.stem.api.SimpleStemmer.stem">[docs]</a>    <span class="k">def</span> <span class="nf">stem</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">token</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;주격, 목적격 조사를 제거하는 stemmer</span>
 
 <span class="sd">        Args:</span>

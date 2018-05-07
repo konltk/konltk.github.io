@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>konlp.chat package &#8212; KoNLTK KoNLP 0.0.8 documentation</title>
+    <title>konlp.parse package &#8212; KoNLTK KoNLP 0.0.8 documentation</title>
     <link rel="stylesheet" href="../_static/agogo.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript" src="../_static/documentation_options.js"></script>
@@ -37,10 +37,42 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="konlp-chat-package">
-<h1>konlp.chat package<a class="headerlink" href="#konlp-chat-package" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="module-konlp.chat">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-konlp.chat" title="Permalink to this headline">¶</a></h2>
+  <div class="section" id="konlp-parse-package">
+<h1>konlp.parse package<a class="headerlink" href="#konlp-parse-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-konlp.parse.api">
+<span id="konlp-parse-api-module"></span><h2>konlp.parse.api module<a class="headerlink" href="#module-konlp.parse.api" title="Permalink to this headline">¶</a></h2>
+<p>Korean Natural Language Toolkit parsing interface</p>
+<dl class="class">
+<dt id="konlp.parse.api.ParserI">
+<em class="property">class </em><code class="descclassname">konlp.parse.api.</code><code class="descname">ParserI</code><a class="reference internal" href="../_modules/konlp/parse/api.html#ParserI"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#konlp.parse.api.ParserI" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Parser Interface</p>
+<dl class="method">
+<dt id="konlp.parse.api.ParserI.tag">
+<code class="descname">tag</code><span class="sig-paren">(</span><em>tokens</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/konlp/parse/api.html#ParserI.tag"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#konlp.parse.api.ParserI.tag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determine the most appropriate tag sequence for the given
+token sequence, and return a corresponding list of tagged
+tokens.  A tagged token is encoded as a tuple <code class="docutils literal notranslate"><span class="pre">(token,</span> <span class="pre">tag)</span></code>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>tokens</strong> (<em>list</em><em>(</em><em>string</em><em>)</em>) – The list of string token</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body">NotImplementedError</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-konlp.parse">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-konlp.parse" title="Permalink to this headline">¶</a></h2>
 <p>we are preparing this module</p>
 </div>
 </div>
@@ -89,7 +121,7 @@
           </div>
           <div role="note" aria-label="source link">
               <br/>
-              <a href="../_sources/apidoc/konlp.chat.rst.txt"
+              <a href="../_sources/api/konlp.parse.rst.txt"
                 rel="nofollow">Show Source</a>
           </div>
         </div>

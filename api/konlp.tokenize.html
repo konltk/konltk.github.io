@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>konlp.tag package &#8212; KoNLTK KoNLP 0.0.8 documentation</title>
+    <title>konlp.tokenize package &#8212; KoNLTK KoNLP 0.0.8 documentation</title>
     <link rel="stylesheet" href="../_static/agogo.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript" src="../_static/documentation_options.js"></script>
@@ -37,32 +37,70 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="konlp-tag-package">
-<h1>konlp.tag package<a class="headerlink" href="#konlp-tag-package" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="konlp-tokenize-package">
+<h1>konlp.tokenize package<a class="headerlink" href="#konlp-tokenize-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="konlp.tokenize.klt.html">konlp.tokenize.klt package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="konlp.tokenize.klt.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="konlp.tokenize.klt.html#module-konlp.tokenize.klt.autospace">konlp.tokenize.klt.autospace module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="konlp.tokenize.klt.html#module-konlp.tokenize.klt">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-konlp.tag.api">
-<span id="konlp-tag-api-module"></span><h2>konlp.tag.api module<a class="headerlink" href="#module-konlp.tag.api" title="Permalink to this headline">¶</a></h2>
-<p>Korean Natural Language Toolkit tagger interface</p>
+<div class="section" id="module-konlp.tokenize.api">
+<span id="konlp-tokenize-api-module"></span><h2>konlp.tokenize.api module<a class="headerlink" href="#module-konlp.tokenize.api" title="Permalink to this headline">¶</a></h2>
+<p>Korean Natural Language Toolkit tonkenizer interface</p>
 <dl class="class">
-<dt id="konlp.tag.api.TaggerI">
-<em class="property">class </em><code class="descclassname">konlp.tag.api.</code><code class="descname">TaggerI</code><a class="reference internal" href="../_modules/konlp/tag/api.html#TaggerI"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#konlp.tag.api.TaggerI" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Tagger Interface</p>
+<dt id="konlp.tokenize.api.SimpleTokenizer">
+<em class="property">class </em><code class="descclassname">konlp.tokenize.api.</code><code class="descname">SimpleTokenizer</code><a class="reference internal" href="../_modules/konlp/tokenize/api.html#SimpleTokenizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#konlp.tokenize.api.SimpleTokenizer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#konlp.tokenize.api.TokenizerI" title="konlp.tokenize.api.TokenizerI"><code class="xref py py-class docutils literal notranslate"><span class="pre">konlp.tokenize.api.TokenizerI</span></code></a></p>
+<p>For an example about how to inherit the class above</p>
 <dl class="method">
-<dt id="konlp.tag.api.TaggerI.tag">
-<code class="descname">tag</code><span class="sig-paren">(</span><em>tokens</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/konlp/tag/api.html#TaggerI.tag"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#konlp.tag.api.TaggerI.tag" title="Permalink to this definition">¶</a></dt>
-<dd><p>Attach the appropriate tag in the given token sequence.</p>
+<dt id="konlp.tokenize.api.SimpleTokenizer.tokenize">
+<code class="descname">tokenize</code><span class="sig-paren">(</span><em>string</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/konlp/tokenize/api.html#SimpleTokenizer.tokenize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#konlp.tokenize.api.SimpleTokenizer.tokenize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simple string tokenizer by white-space character</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>tokens</strong> (<em>list</em><em>(</em><em>str</em><em>)</em>) – Token sequence</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>string</strong> (<em>str</em>) – String to tokenize</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">The first string is token, the second string is tag</td>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Tokenized tokens</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">list(tuple(str, str))</td>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="konlp.tokenize.api.TokenizerI">
+<em class="property">class </em><code class="descclassname">konlp.tokenize.api.</code><code class="descname">TokenizerI</code><a class="reference internal" href="../_modules/konlp/tokenize/api.html#TokenizerI"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#konlp.tokenize.api.TokenizerI" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Tokenizer Interface</p>
+<dl class="method">
+<dt id="konlp.tokenize.api.TokenizerI.tokenize">
+<code class="descname">tokenize</code><span class="sig-paren">(</span><em>string</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/konlp/tokenize/api.html#TokenizerI.tokenize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#konlp.tokenize.api.TokenizerI.tokenize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a tokenized copy of string.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>string</strong> (<em>str</em>) – String to tokenize</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Tokenized tokens</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">list(str)</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotImplementedError</span></code> – If not implement this method on a class that extends this class</td>
 </tr>
@@ -73,8 +111,8 @@
 </dd></dl>
 
 </div>
-<div class="section" id="module-konlp.tag">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-konlp.tag" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-konlp.tokenize">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-konlp.tokenize" title="Permalink to this headline">¶</a></h2>
 <p>we are preparing this module</p>
 </div>
 </div>
@@ -123,7 +161,7 @@
           </div>
           <div role="note" aria-label="source link">
               <br/>
-              <a href="../_sources/apidoc/konlp.tag.rst.txt"
+              <a href="../_sources/api/konlp.tokenize.rst.txt"
                 rel="nofollow">Show Source</a>
           </div>
         </div>
