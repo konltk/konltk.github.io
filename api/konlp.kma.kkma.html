@@ -1,0 +1,225 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>konlp.kma.kkma package &#8212; KoNLP 0.0.24 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/agogo.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../index.html">KoNLP 0.0.24 documentation</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="konlp-kma-kkma-package">
+<h1>konlp.kma.kkma package<a class="headerlink" href="#konlp-kma-kkma-package" title="Permalink to this heading">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="module-konlp.kma.kkma.kkma">
+<span id="konlp-kma-kkma-kkma-module"></span><h2>konlp.kma.kkma.kkma module<a class="headerlink" href="#module-konlp.kma.kkma.kkma" title="Permalink to this heading">¶</a></h2>
+<p>kkma 한국어 형태소 분석기</p>
+<p>이 코드는 꼬꼬마 형태소 분석기를 Python으로 wrapping한 코드입니다.
+꼬꼬마 형태소 분석기는 서울대학교 IDS(intelligent Data Systems)에서 만들어졌습니다.
+더 많은 정보를 보실려면 <a class="reference external" href="http://kkma.snu.ac.kr/">http://kkma.snu.ac.kr/</a> 에서 보시면 됩니다.</p>
+<p>현재 kkma는 analyze, morphs, nouns 기능을 제공합니다.
+기능을 사용하기 전에는 pc에 jdk(8 or older)가 설치되어 있어야 합니다.</p>
+<blockquote>
+<div><p>$ sudo apt-get install openjdk-8-jdk</p>
+</div></blockquote>
+<dl class="simple">
+<dt>그리고 또한 파이썬 패키지인 JPype가 설치되어 있어야 합니다.</dt><dd><p>$ sudo pip3 install JPype1-py3</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">konlp.kma</span> <span class="kn">import</span> <span class="n">Kkma</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">kk</span> <span class="o">=</span> <span class="n">Kkma</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">simple_text</span> <span class="o">=</span> <span class="s2">&quot;안녕하세요. 국민대학교 자연어처리 연구실입니다.&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">kk</span><span class="o">.</span><span class="n">analyze</span><span class="p">(</span><span class="n">simple_text</span><span class="p">)</span>
+<span class="go">[[&#39;안녕하세요.&#39;, [&#39;안녕/NNG&#39;, &#39;하/XSV&#39;, &#39;세요/EFN&#39;, &#39;./SF&#39;]],</span>
+<span class="go">[&#39;국민대학교 자연어처리 연구실입니다.&#39;,</span>
+<span class="go">[&#39;국민대학교/NNG&#39;, &#39;자연어/NNG&#39;, &#39;처리/NNG&#39;, &#39;연구실/NNG&#39;,</span>
+<span class="go">&#39;이/VCP&#39;, &#39;ㅂ니다/EFN&#39;, &#39;./SF&#39;]]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">kk</span><span class="o">.</span><span class="n">morphs</span><span class="p">(</span><span class="n">simple_text</span><span class="p">)</span>
+<span class="go">[&#39;안녕&#39;, &#39;하&#39;, &#39;세요&#39;, &#39;.&#39;, &#39;국민대학교&#39;,</span>
+<span class="go">&#39;자연어&#39;, &#39;처리&#39;, &#39;연구실&#39;, &#39;이&#39;, &#39;ㅂ니다&#39;, &#39;.&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">kk</span><span class="o">.</span><span class="n">nouns</span><span class="p">(</span><span class="n">simple_text</span><span class="p">)</span>
+<span class="go">[&#39;안녕&#39;, &#39;국민&#39;, &#39;국민대학교&#39;, &#39;대학교&#39;,</span>
+<span class="go">&#39;자연어&#39;, &#39;자연어처리&#39;, &#39;처리&#39;, &#39;연구실&#39;]</span>
+</pre></div>
+</div>
+<p>TODO : The way to initialize JVM have to change</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="konlp.kma.kkma.kkma.Kkma">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">konlp.kma.kkma.kkma.</span></span><span class="sig-name descname"><span class="pre">Kkma</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">jvmpath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/konlp/kma/kkma/kkma.html#Kkma"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#konlp.kma.kkma.kkma.Kkma" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="konlp.kma.html#konlp.kma.api.KmaI" title="konlp.kma.api.KmaI"><code class="xref py py-class docutils literal notranslate"><span class="pre">KmaI</span></code></a></p>
+<p>서울대학교 IDS에서 만들어진 꼬꼬마 형태소 분석기입니다.</p>
+<dl class="simple">
+<dt>기능을 사용하기 전에는 pc에 jdk(8 or older)가 설치되어 있어야 합니다.</dt><dd><p>$ sudo apt-get install openjdk-8-jdk</p>
+</dd>
+<dt>그리고 또한 파이썬 패키지인 JPype가 설치되어 있어야 합니다.</dt><dd><p>$ sudo pip3 install JPype1-py3</p>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">konlp.kma</span> <span class="kn">import</span> <span class="n">Kkma</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">kk</span> <span class="o">=</span> <span class="n">Kkma</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">simple_text</span> <span class="o">=</span> <span class="s2">&quot;안녕하세요. 국민대학교 자연어처리 연구실입니다.&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">kk</span><span class="o">.</span><span class="n">analyze</span><span class="p">(</span><span class="n">simple_text</span><span class="p">)</span>
+<span class="go">[[&#39;안녕하세요.&#39;, [&#39;안녕/NNG&#39;, &#39;하/XSV&#39;, &#39;세요/EFN&#39;, &#39;./SF&#39;]],</span>
+<span class="go">[&#39;국민대학교 자연어처리 연구실입니다.&#39;,</span>
+<span class="go">[&#39;국민대학교/NNG&#39;, &#39;자연어/NNG&#39;, &#39;처리/NNG&#39;, &#39;연구실/NNG&#39;,</span>
+<span class="go">&#39;이/VCP&#39;, &#39;ㅂ니다/EFN&#39;, &#39;./SF&#39;]]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">kk</span><span class="o">.</span><span class="n">morphs</span><span class="p">(</span><span class="n">simple_text</span><span class="p">)</span>
+<span class="go">[&#39;안녕&#39;, &#39;하&#39;, &#39;세요&#39;, &#39;.&#39;, &#39;국민대학교&#39;,</span>
+<span class="go">&#39;자연어&#39;, &#39;처리&#39;, &#39;연구실&#39;, &#39;이&#39;, &#39;ㅂ니다&#39;, &#39;.&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">kk</span><span class="o">.</span><span class="n">nouns</span><span class="p">(</span><span class="n">simple_text</span><span class="p">)</span>
+<span class="go">[&#39;안녕&#39;, &#39;국민&#39;, &#39;국민대학교&#39;, &#39;대학교&#39;,</span>
+<span class="go">&#39;자연어&#39;, &#39;자연어처리&#39;, &#39;처리&#39;, &#39;연구실&#39;]</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="konlp.kma.kkma.kkma.Kkma.analyze">
+<span class="sig-name descname"><span class="pre">analyze</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/konlp/kma/kkma/kkma.html#Kkma.analyze"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#konlp.kma.kkma.kkma.Kkma.analyze" title="Permalink to this definition">¶</a></dt>
+<dd><p>형태소 분석기</p>
+<p>문장을 입력받아 형태소 분석을 합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>string</strong> (<em>str</em>) – 형태소/품하 분석할 문장</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>[[원본, [형태소/품사]]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="konlp.kma.kkma.kkma.Kkma.nouns">
+<span class="sig-name descname"><span class="pre">nouns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/konlp/kma/kkma/kkma.html#Kkma.nouns"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#konlp.kma.kkma.kkma.Kkma.nouns" title="Permalink to this definition">¶</a></dt>
+<dd><p>단어 추출기</p>
+<p>문장을 입력받아 단어를 추출합니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>string</strong> (<em>str</em>) – 단어 추출할 문장</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>단어가 추출된 list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="konlp.kma.kkma.kkma.Kkma.tokens">
+<span class="sig-name descname"><span class="pre">tokens</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/konlp/kma/kkma/kkma.html#Kkma.tokens"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#konlp.kma.kkma.kkma.Kkma.tokens" title="Permalink to this definition">¶</a></dt>
+<dd><p>형태소 분리</p>
+<p>형태소 분석 후에 분리된 형태소만 얻는 함수 입니다.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>string</strong> (<em>str</em>) – 형태소 분리할 문장</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>분리된 형태소의 list</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-konlp.kma.kkma">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-konlp.kma.kkma" title="Permalink to this heading">¶</a></h2>
+<p>KoNLP Korean morpheme analyzer Package - kkma</p>
+<p>TODO : We will introduce kkma in detail.</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../news.html">KoNLP News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">KoNLP 설치하기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data.html">Installing KoNLTK project Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contribute.html">Contribute to KoNLTK project</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/konltk/konlp/wiki/FQA">FAQ</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/konltk/konlp/wiki">Wiki</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../API.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../HOWTO.html">HOWTO</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Search</h3>
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="Go" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="../py-modindex.html" title="Python Module Index"
+              >modules</a> |
+            <a href="../genindex.html" title="General Index"
+              >index</a>
+          </div>
+          <div role="note" aria-label="source link">
+              <br/>
+              <a href="../_sources/api/konlp.kma.kkma.rst.txt"
+                rel="nofollow">Show Source</a>
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, KoNLTK Project.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

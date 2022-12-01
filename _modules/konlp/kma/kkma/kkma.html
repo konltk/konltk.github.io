@@ -1,0 +1,275 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>konlp.kma.kkma.kkma &#8212; KoNLP 0.0.24 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/agogo.css" />
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/sphinx_highlight.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+  </head><body>
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="../../../../index.html">KoNLP 0.0.24 documentation</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |
+          <a href="../../../../genindex.html" title="General Index"
+             accesskey="I">index</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for konlp.kma.kkma.kkma</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf8 -*-</span>
+<span class="c1"># Copyright (C) 2017 - 0000 KoNLTK project</span>
+<span class="c1">#</span>
+<span class="c1"># Korean Natural Language Toolkit: Korean morpheme analyzer - kkma</span>
+<span class="c1">#</span>
+<span class="c1">#</span>
+<span class="c1"># Author: Younghun Cho &lt;cyh905@gmail.com&gt;</span>
+<span class="c1">#         Hyunyoung Lee &lt;hyun02.engineer@gmail.com&gt;</span>
+<span class="c1">#</span>
+<span class="c1"># URL: &lt;https://www.konltk.org&gt;</span>
+<span class="c1"># For license information, see LICENSE.TXT</span>
+<span class="c1"># ========================================================</span>
+<span class="sd">&quot;&quot;&quot;kkma 한국어 형태소 분석기</span>
+
+<span class="sd">이 코드는 꼬꼬마 형태소 분석기를 Python으로 wrapping한 코드입니다.</span>
+<span class="sd">꼬꼬마 형태소 분석기는 서울대학교 IDS(intelligent Data Systems)에서 만들어졌습니다.</span>
+<span class="sd">더 많은 정보를 보실려면 http://kkma.snu.ac.kr/ 에서 보시면 됩니다.</span>
+
+<span class="sd">현재 kkma는 analyze, morphs, nouns 기능을 제공합니다.</span>
+<span class="sd">기능을 사용하기 전에는 pc에 jdk(8 or older)가 설치되어 있어야 합니다.</span>
+<span class="sd">    $ sudo apt-get install openjdk-8-jdk</span>
+
+<span class="sd">그리고 또한 파이썬 패키지인 JPype가 설치되어 있어야 합니다.</span>
+<span class="sd">    $ sudo pip3 install JPype1-py3</span>
+
+<span class="sd">Example:</span>
+<span class="sd">    &gt;&gt;&gt; from konlp.kma import Kkma</span>
+<span class="sd">    &gt;&gt;&gt; kk = Kkma()</span>
+<span class="sd">    &gt;&gt;&gt; simple_text = &quot;안녕하세요. 국민대학교 자연어처리 연구실입니다.&quot;</span>
+<span class="sd">    &gt;&gt;&gt; kk.analyze(simple_text)</span>
+<span class="sd">    [[&#39;안녕하세요.&#39;, [&#39;안녕/NNG&#39;, &#39;하/XSV&#39;, &#39;세요/EFN&#39;, &#39;./SF&#39;]],</span>
+<span class="sd">    [&#39;국민대학교 자연어처리 연구실입니다.&#39;,</span>
+<span class="sd">    [&#39;국민대학교/NNG&#39;, &#39;자연어/NNG&#39;, &#39;처리/NNG&#39;, &#39;연구실/NNG&#39;,</span>
+<span class="sd">    &#39;이/VCP&#39;, &#39;ㅂ니다/EFN&#39;, &#39;./SF&#39;]]]</span>
+<span class="sd">    &gt;&gt;&gt; kk.morphs(simple_text)</span>
+<span class="sd">    [&#39;안녕&#39;, &#39;하&#39;, &#39;세요&#39;, &#39;.&#39;, &#39;국민대학교&#39;,</span>
+<span class="sd">    &#39;자연어&#39;, &#39;처리&#39;, &#39;연구실&#39;, &#39;이&#39;, &#39;ㅂ니다&#39;, &#39;.&#39;]</span>
+<span class="sd">    &gt;&gt;&gt; kk.nouns(simple_text)</span>
+<span class="sd">    [&#39;안녕&#39;, &#39;국민&#39;, &#39;국민대학교&#39;, &#39;대학교&#39;,</span>
+<span class="sd">    &#39;자연어&#39;, &#39;자연어처리&#39;, &#39;처리&#39;, &#39;연구실&#39;]</span>
+
+<span class="sd">TODO : The way to initialize JVM have to change</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">konlp</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">platform</span>
+<span class="k">if</span> <span class="n">platform</span><span class="o">.</span><span class="n">system</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;Windows&#39;</span><span class="p">:</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="p">[</span><span class="n">konlp</span><span class="o">.</span><span class="n">__path__</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;/lib_win&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span>
+<span class="kn">import</span> <span class="nn">jpype</span> <span class="k">as</span> <span class="nn">jp</span><span class="c1">#import jpype as jp # pylint: disable=import-error</span>
+<span class="kn">from</span> <span class="nn">konlp.kma.api</span> <span class="kn">import</span> <span class="n">KmaI</span>
+
+<div class="viewcode-block" id="Kkma"><a class="viewcode-back" href="../../../../api/konlp.kma.kkma.html#konlp.kma.kkma.kkma.Kkma">[docs]</a><span class="k">class</span> <span class="nc">Kkma</span><span class="p">(</span><span class="n">KmaI</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;서울대학교 IDS에서 만들어진 꼬꼬마 형태소 분석기입니다.</span>
+
+<span class="sd">    기능을 사용하기 전에는 pc에 jdk(8 or older)가 설치되어 있어야 합니다.</span>
+<span class="sd">        $ sudo apt-get install openjdk-8-jdk</span>
+
+<span class="sd">    그리고 또한 파이썬 패키지인 JPype가 설치되어 있어야 합니다.</span>
+<span class="sd">        $ sudo pip3 install JPype1-py3</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        &gt;&gt;&gt; from konlp.kma import Kkma</span>
+<span class="sd">        &gt;&gt;&gt; kk = Kkma()</span>
+<span class="sd">        &gt;&gt;&gt; simple_text = &quot;안녕하세요. 국민대학교 자연어처리 연구실입니다.&quot;</span>
+<span class="sd">        &gt;&gt;&gt; kk.analyze(simple_text)</span>
+<span class="sd">        [[&#39;안녕하세요.&#39;, [&#39;안녕/NNG&#39;, &#39;하/XSV&#39;, &#39;세요/EFN&#39;, &#39;./SF&#39;]],</span>
+<span class="sd">        [&#39;국민대학교 자연어처리 연구실입니다.&#39;,</span>
+<span class="sd">        [&#39;국민대학교/NNG&#39;, &#39;자연어/NNG&#39;, &#39;처리/NNG&#39;, &#39;연구실/NNG&#39;,</span>
+<span class="sd">        &#39;이/VCP&#39;, &#39;ㅂ니다/EFN&#39;, &#39;./SF&#39;]]]</span>
+<span class="sd">        &gt;&gt;&gt; kk.morphs(simple_text)</span>
+<span class="sd">        [&#39;안녕&#39;, &#39;하&#39;, &#39;세요&#39;, &#39;.&#39;, &#39;국민대학교&#39;,</span>
+<span class="sd">        &#39;자연어&#39;, &#39;처리&#39;, &#39;연구실&#39;, &#39;이&#39;, &#39;ㅂ니다&#39;, &#39;.&#39;]</span>
+<span class="sd">        &gt;&gt;&gt; kk.nouns(simple_text)</span>
+<span class="sd">        [&#39;안녕&#39;, &#39;국민&#39;, &#39;국민대학교&#39;, &#39;대학교&#39;,</span>
+<span class="sd">        &#39;자연어&#39;, &#39;자연어처리&#39;, &#39;처리&#39;, &#39;연구실&#39;]</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">jvmpath</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;init funtion for Kkma</span>
+
+<span class="sd">        자바로 된 kkma를 사용하기 위해서 jvm 설정과 시작을 합니다.</span>
+<span class="sd">        파이썬 패키지 &#39;JPype&#39;, 그리고 jdk가 설치되어 있어야 합니다.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            jvmpath(str): jvm의 경로</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">import</span> <span class="nn">konlp</span>
+        <span class="n">classpath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">pathsep</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">konlp</span><span class="o">.</span><span class="n">__path__</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;/kma/kkma/lib/&quot;</span> <span class="o">+</span> <span class="s2">&quot;kkma-2.0.jar&quot;</span><span class="p">,</span><span class="n">konlp</span><span class="o">.</span><span class="n">__path__</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;/kma/klt2000/lib/&quot;</span> <span class="o">+</span> <span class="s2">&quot;klt2000.jar&quot;</span><span class="p">])</span>
+        <span class="n">jvmpath</span> <span class="o">=</span> <span class="n">jvmpath</span> <span class="ow">or</span> <span class="n">jp</span><span class="o">.</span><span class="n">getDefaultJVMPath</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">jvmpath</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">jp</span><span class="o">.</span><span class="n">isJVMStarted</span><span class="p">():</span>
+            <span class="n">jp</span><span class="o">.</span><span class="n">startJVM</span><span class="p">(</span><span class="n">jvmpath</span><span class="p">,</span> <span class="s1">&#39;-Djava.class.path=</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">classpath</span><span class="p">,</span>
+                        <span class="s1">&#39;-Dfile.encoding=UTF8&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;-ea&#39;</span><span class="p">,</span> <span class="s1">&#39;-Xmx1024m&#39;</span><span class="p">)</span>
+        <span class="c1"># else:</span>
+            <span class="c1"># raise ValueError(&quot;There is no JVM Path.&quot;)</span>
+
+
+<div class="viewcode-block" id="Kkma.nouns"><a class="viewcode-back" href="../../../../api/konlp.kma.kkma.html#konlp.kma.kkma.kkma.Kkma.nouns">[docs]</a>    <span class="k">def</span> <span class="nf">nouns</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">string</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;단어 추출기</span>
+
+<span class="sd">        문장을 입력받아 단어를 추출합니다.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            string(str): 단어 추출할 문장</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            단어가 추출된 list</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">j_p</span> <span class="o">=</span> <span class="n">jp</span><span class="o">.</span><span class="n">JPackage</span><span class="p">(</span><span class="s1">&#39;org.snu.ids.ha.index&#39;</span><span class="p">)</span>
+        <span class="n">key_l</span> <span class="o">=</span> <span class="n">j_p</span><span class="o">.</span><span class="n">KeywordExtractor</span><span class="p">()</span><span class="o">.</span><span class="n">extractKeyword</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+        <span class="n">result_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">key_l</span><span class="o">.</span><span class="n">size</span><span class="p">()):</span>
+            <span class="n">result_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">key_l</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">getString</span><span class="p">())</span>
+        <span class="k">return</span> <span class="n">result_list</span></div>
+
+<div class="viewcode-block" id="Kkma.analyze"><a class="viewcode-back" href="../../../../api/konlp.kma.kkma.html#konlp.kma.kkma.kkma.Kkma.analyze">[docs]</a>    <span class="k">def</span> <span class="nf">analyze</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">string</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;형태소 분석기</span>
+
+<span class="sd">        문장을 입력받아 형태소 분석을 합니다.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            string(str): 형태소/품하 분석할 문장</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            [[원본, [형태소/품사]]]</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">j_p</span> <span class="o">=</span> <span class="n">jp</span><span class="o">.</span><span class="n">JPackage</span><span class="p">(</span><span class="s1">&#39;org.snu.ids.ha.ma&#39;</span><span class="p">)</span>
+        <span class="n">m_a</span> <span class="o">=</span> <span class="n">j_p</span><span class="o">.</span><span class="n">MorphemeAnalyzer</span><span class="p">()</span>
+
+        <span class="n">ret</span> <span class="o">=</span> <span class="n">m_a</span><span class="o">.</span><span class="n">analyze</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="n">m_a</span><span class="o">.</span><span class="n">postProcess</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="n">m_a</span><span class="o">.</span><span class="n">leaveJustBest</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span>
+
+        <span class="n">stl</span> <span class="o">=</span> <span class="n">m_a</span><span class="o">.</span><span class="n">divideToSentences</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span>
+        <span class="n">result_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">stl</span><span class="o">.</span><span class="n">size</span><span class="p">()):</span>
+            <span class="n">sentence</span> <span class="o">=</span> <span class="n">stl</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+            <span class="n">morphs_list</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">sentence</span><span class="o">.</span><span class="n">size</span><span class="p">()):</span>
+                <span class="n">eoj</span> <span class="o">=</span> <span class="n">sentence</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">eoj</span><span class="o">.</span><span class="n">size</span><span class="p">()):</span>
+                    <span class="n">morphs_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">eoj</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">k</span><span class="p">)</span><span class="o">.</span><span class="n">getString</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="n">eoj</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">k</span><span class="p">)</span><span class="o">.</span><span class="n">getTag</span><span class="p">())</span>
+            <span class="n">result_list</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">sentence</span><span class="o">.</span><span class="n">getSentence</span><span class="p">(),</span> <span class="n">morphs_list</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">result_list</span></div>
+
+<div class="viewcode-block" id="Kkma.tokens"><a class="viewcode-back" href="../../../../api/konlp.kma.kkma.html#konlp.kma.kkma.kkma.Kkma.tokens">[docs]</a>    <span class="k">def</span> <span class="nf">tokens</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">string</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;형태소 분리</span>
+
+<span class="sd">        형태소 분석 후에 분리된 형태소만 얻는 함수 입니다.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            string(str): 형태소 분리할 문장</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            분리된 형태소의 list</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">morphs_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">analyze</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">analyze</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+        <span class="kn">import</span> <span class="nn">re</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">analyze</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+                <span class="n">morphs_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s2">&quot;/.+&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">j</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">morphs_list</span></div></div>
+</pre></div>
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          
+          <h3>Table of Contents</h3>
+          <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../news.html">KoNLP News</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../install.html">KoNLP 설치하기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../data.html">Installing KoNLTK project Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../contribute.html">Contribute to KoNLTK project</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/konltk/konlp/wiki/FQA">FAQ</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/konltk/konlp/wiki">Wiki</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../API.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../HOWTO.html">HOWTO</a></li>
+</ul>
+
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Search</h3>
+            <form class="search" action="../../../../search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="Go" />
+            </form>
+          </div>
+
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="../../../../py-modindex.html" title="Python Module Index"
+              >modules</a> |
+            <a href="../../../../genindex.html" title="General Index"
+              >index</a>
+          </div>
+          <div role="note" aria-label="source link">
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2017, KoNLTK Project.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+  </body>
+</html>

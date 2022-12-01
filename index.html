@@ -1,19 +1,20 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>KoNLTK(Korean Natural Language Toolkit) - KoNLP &#8212; KoNLTK KoNLP 0.0.8 documentation</title>
-    <link rel="stylesheet" href="_static/agogo.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>KoNLTK(Korean Natural Language Toolkit) - KoNLP &#8212; KoNLP 0.0.24 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/agogo.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="KoNLP News" href="news.html" /> 
@@ -21,7 +22,7 @@
     <div class="header-wrapper" role="banner">
       <div class="header">
         <div class="headertitle"><a
-          href="#">KoNLP 0.0.8 documentation</a></div>
+          href="#">KoNLP 0.0.24 documentation</a></div>
         <div class="rel" role="navigation" aria-label="related navigation">
           <a href="news.html" title="KoNLP News"
              accesskey="N">next</a> |
@@ -41,47 +42,83 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="konltk-korean-natural-language-toolkit-konlp">
-<h1>KoNLTK(Korean Natural Language Toolkit) - KoNLP<a class="headerlink" href="#konltk-korean-natural-language-toolkit-konlp" title="Permalink to this headline">¶</a></h1>
+  <section id="konltk-korean-natural-language-toolkit-konlp">
+<h1>KoNLTK(Korean Natural Language Toolkit) - KoNLP<a class="headerlink" href="#konltk-korean-natural-language-toolkit-konlp" title="Permalink to this heading">¶</a></h1>
 <p>KoNLTK: Korean Natural Language ToolKit</p>
-<p>KoNLTK는 python언어를 이용하여 언어 데이터 작업을 하기위한 좋은 플랫폼입니다. pos-tagging, auto spacing 등 텍스트 처리, 가공 라이브러리 세트에 대한 사용하기 쉬운 인터페이스가 제공됩니다.</p>
-<p>KoNLTK는 전산 언어학의 주제와 함께 프로그래밍 기초를 소개하는 실제 안내서와 포괄적 인 API 문서로 언어 학자, 엔지니어, 학생, 교육자, 연구원 및 업계 사용자 모두에게 적합합니다. NLTK는 Linux에서 사용할 수 있습니다. 무엇보다 NLTK는 무료 오픈 소스 커뮤니티 중심 프로젝트입니다.</p>
-<div class="section" id="some-simple-things-you-can-do-with-konlp">
-<h2>Some simple things you can do with konlp<a class="headerlink" href="#some-simple-things-you-can-do-with-konlp" title="Permalink to this headline">¶</a></h2>
-<p>Morphological analysis:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">konlp.kma.klt</span> <span class="k">import</span> <span class="n">klt</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">k</span> <span class="o">=</span> <span class="n">klt</span><span class="o">.</span><span class="n">KltKma</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">simple_txt</span> <span class="o">=</span> <span class="s2">&quot;안녕하세요. 국민대학교 자연어처리 연구실입니다.&quot;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">k</span><span class="o">.</span><span class="n">analyze</span><span class="p">(</span><span class="n">simple_txt</span><span class="p">)</span>
-<span class="go">[(&#39;안녕하세요&#39;, [(&#39;안녕&#39;, &#39;N&#39;), (&#39;하&#39;, &#39;t&#39;), (&#39;세요&#39;, &#39;e&#39;)]), (&#39;.&#39;, [(&#39;.&#39;, &#39;q&#39;)]),</span>
-<span class="go">(&#39;국민대학교&#39;, [(&#39;국민대학교&#39;, &#39;N&#39;)]), (&#39;자연어처리&#39;, [(&#39;자연어처리&#39;, &#39;N&#39;)]),</span>
-<span class="go">(&#39;연구실입니다&#39;, [(&#39;연구실&#39;, &#39;N&#39;), (&#39;이&#39;, &#39;c&#39;), (&#39;습니다&#39;, &#39;e&#39;)]),</span>
-<span class="go">(&#39;.&#39;, [(&#39;.&#39;, &#39;q&#39;)])]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">k</span><span class="o">.</span><span class="n">morphs</span><span class="p">(</span><span class="n">simple_txt</span><span class="p">)</span>
-<span class="go">[&#39;안녕&#39;, &#39;하&#39;, &#39;세요&#39;, &#39;.&#39;, &#39;국민대학교&#39;, &#39;자연어처리&#39;, &#39;연구실&#39;, &#39;이&#39;, &#39;습니다&#39;, &#39;.&#39;]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">k</span><span class="o">.</span><span class="n">nouns</span><span class="p">(</span><span class="n">simple_txt</span><span class="p">)</span>
-<span class="go">[&#39;안녕&#39;, &#39;국민대학교&#39;, &#39;자연어처리&#39;, &#39;연구실&#39;]</span>
+<p>KoNLTK는 python 언어를 이용하여 한글 관련 언어처리 작업을 하기 위한 플랫폼입니다. 형태소 분석, 품사 태깅, 구문 분석, 자동 띄어쓰기 등 한글 텍스트 처리, 언어처리 관련 라이브러리들에 대해 사용하기 쉬운 사용자 인터페이스가 제공됩니다. KoNLTK는 포괄적인 API 문서로 언어학자, 엔지니어, 학생, 교육자, 연구원들에게 적합합니다. NLTK는 Linux에서 사용할 수 있습니다.</p>
+<p>NLTK는 국내 자연어 처리 연구 분야의 NLP 전문가들이 연구-개발한 결과물을 다양한 응용 분야에서 쉽게 활용할 수 있도록 API를 제공하여
+한글 및 한국어 관련 분야의 발전에 기여하고자 합니다.</p>
+<p>KoNLP 플랫폼을 통해 제공되는 연구결과물은 연구-개발 및 비영리적인 목적으로 무료로 제공되며 구체적인 사항은 저작권자의 라이선스 정책을 확인하기 바랍니다.</p>
+<section id="some-simple-things-you-can-do-with-konlp">
+<h2>Some simple things you can do with konlp<a class="headerlink" href="#some-simple-things-you-can-do-with-konlp" title="Permalink to this heading">¶</a></h2>
+<p>How to Install konlp:
+.. code:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">JAVA</span> <span class="o">&gt;=</span> <span class="mi">11</span><span class="p">,</span> <span class="n">Python3</span><span class="p">(</span><span class="mf">3.8</span> <span class="n">이하</span><span class="p">)</span> <span class="n">필요</span>
+<span class="o">**</span><span class="n">Microsoft</span> <span class="n">Visual</span> <span class="n">C</span><span class="o">++</span> <span class="n">Build</span> <span class="n">Tools</span> <span class="n">에러</span> <span class="n">발생시</span><span class="o">**</span>
+<span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">visualstudio</span><span class="o">.</span><span class="n">microsoft</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ko</span><span class="o">/</span><span class="n">vs</span><span class="o">/</span><span class="n">older</span><span class="o">-</span><span class="n">downloads</span><span class="o">/</span> <span class="n">에서</span> <span class="n">재배포</span> <span class="n">가능</span>  <span class="n">패키지</span> <span class="n">및</span> <span class="n">빌드</span> <span class="n">도구</span> <span class="n">설치</span>
+<span class="n">필요</span>
+
+<span class="c1">#Windows</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">wheel</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">konlp</span>
+
+<span class="c1">#Linux</span>
+<span class="n">pip3</span> <span class="n">install</span> <span class="n">wheel</span>
+<span class="n">pip3</span> <span class="n">install</span> <span class="n">konlp</span>
 </pre></div>
 </div>
-<p>Automatic word spacing:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">konlp.tokenize</span> <span class="k">import</span> <span class="n">KltAsp</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">k</span> <span class="o">=</span> <span class="n">KltAsp</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">k</span><span class="o">.</span><span class="n">asp</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;국민대학교자연어처리연구실&quot;</span><span class="p">)</span>
-<span class="go">[&#39;국민대학교&#39;, &#39;자연어처리&#39;, &#39;연구실&#39;]</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">k</span><span class="o">.</span><span class="n">asp</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;국민대학교자연어처리연구실&quot;</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="go">&#39;국민대학교 자연어처리 연구실&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">k</span><span class="o">.</span><span class="n">asp</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;국민대학교자연어처리연구실&quot;</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="go">[&#39;국민대학교&#39;, &#39;자연어처리&#39;, &#39;연구실&#39;]</span>
+<p>Morphological analysis:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">konlp.kma.klt2000</span> <span class="kn">import</span> <span class="n">klt2000</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">k</span> <span class="o">=</span> <span class="n">klt2000</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">simple_txt</span> <span class="o">=</span> <span class="s2">&quot;내 눈을 본다면 밤하늘의 별이 되는 기분을 느낄 수 있을 거야&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">k</span><span class="o">.</span><span class="n">pos</span><span class="p">(</span><span class="n">simple_txt</span><span class="p">)</span>
+<span class="go">[&#39;나/1&#39;, &#39;눈/1&#39;, &#39;보/V&#39;, &#39;밤하늘/N&#39;, &#39;별/1&#39;, &#39;되/V&#39;, &#39;기분/N&#39;, &#39;느끼/V&#39;, &#39;수/1&#39;, &#39;있/V&#39;, &#39;거/1&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">k</span><span class="o">.</span><span class="n">morphs</span><span class="p">(</span><span class="n">simple_txt</span><span class="p">)</span>
+<span class="go">[&#39;나&#39;, &#39;눈&#39;, &#39;보&#39;, &#39;밤하늘&#39;, &#39;별&#39;, &#39;되&#39;, &#39;기분&#39;, &#39;느끼&#39;, &#39;수&#39;, &#39;있&#39;, &#39;거&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">k</span><span class="o">.</span><span class="n">nouns</span><span class="p">(</span><span class="n">simple_txt</span><span class="p">)</span>
+<span class="go">[&#39;나&#39;, &#39;눈&#39;, &#39;밤하늘&#39;, &#39;별&#39;, &#39;기분&#39;, &#39;수&#39;, &#39;거&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">k</span><span class="o">.</span><span class="n">sent_tokenize</span><span class="p">(</span><span class="s1">&#39;국민대학교 자연어처리 연구실에서 만든  파이썬기반 형태소 분석기입니다.많은 이용 부탁드립니다.&#39;</span><span class="p">)</span>
+<span class="go">[&#39;국민대학교 자연어처리 연구실에서 만든  파이썬기반 형태소 분석기입니다.&#39;, &#39;많은 이용 부탁드립니다.&#39;]</span>
+</pre></div>
+</div>
+<p><strong>사용자 사전추가 방법:</strong>
+.. code:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&#39;기성용&#39;, &#39;모더나&#39; 등과 같이 미등록명사는 &#39;기성&#39;, &#39;모더&#39; 등과 같이 형태소 분석 오류가 발생할 수 있습니다.
+이 경우에 해당 명사를 아래 경로에 있는 &#39;ham-usr.dic&#39;에 &quot;소팅순서에 맞게&quot; 추가하면 됩니다.
+(주의) ham-usr.dic은 텍스트 파일이며, KS완성형(cp949) 한글코드로 저장해야 함!
+
+사용자 사전 경로 :
+(파이썬이 설치된 경로)\Python38\Lib\site-packages\konlp\kma\klt2000\hdic\ham-usr.dic
+</pre></div>
+</div>
+<p>Example(사용자 사전 추가전):</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">konlp.kma.klt2000</span> <span class="kn">import</span> <span class="n">klt2000</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">k</span> <span class="o">=</span> <span class="n">klt2000</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">k</span><span class="o">.</span><span class="n">pos</span><span class="p">(</span><span class="s1">&#39;기성용 모더나&#39;</span><span class="p">)</span>
+<span class="go">[&#39;기성/N&#39;, &#39;모더/K&#39;]</span>
+</pre></div>
+</div>
+<p>Example(사용자 사전 추가후):</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">konlp.kma.klt2000</span> <span class="kn">import</span> <span class="n">klt2000</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">k</span> <span class="o">=</span> <span class="n">klt2000</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">k</span><span class="o">.</span><span class="n">pos</span><span class="p">(</span><span class="s1">&#39;기성용 모더나&#39;</span><span class="p">)</span>
+<span class="go">[&#39;기성용/N&#39;, &#39;모더나/N&#39;]</span>
 </pre></div>
 </div>
 <p>Display a parse tree:</p>
 <blockquote>
-<div>Later on, We are preparing…</div></blockquote>
+<div><p>Later on, We are preparing…</p>
+</div></blockquote>
 <div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">Contents:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="news.html">KoNLP News</a></li>
-<li class="toctree-l1"><a class="reference internal" href="install.html">Installing KoNLP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">KoNLP 설치하기</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="install.html#unix-ubuntu-14-04-16-04">Unix (Ubuntu 14.04, 16.04)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#windows">Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#installing-third-party-software">Installing Third-Party Software</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="data.html">Installing KoNLTK project Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contribute.html">Contribute to KoNLTK project</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/konltk/konlp/wiki/FQA">FAQ</a></li>
@@ -90,28 +127,30 @@
 <li class="toctree-l1"><a class="reference internal" href="HOWTO.html">HOWTO</a></li>
 </ul>
 </div>
-</div>
-</div>
-<div class="section" id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+</section>
+</section>
+<section id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this heading">¶</a></h1>
 <ul class="simple">
-<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
-<li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></li>
-<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
 </ul>
-</div>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
         </div>
         <div class="sidebar">
-          <h3>Table Of Contents</h3>
-          <p class="caption"><span class="caption-text">Contents:</span></p>
+          
+          <h3>Table of Contents</h3>
+          <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="news.html">KoNLP News</a></li>
-<li class="toctree-l1"><a class="reference internal" href="install.html">Installing KoNLP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">KoNLP 설치하기</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data.html">Installing KoNLTK project Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contribute.html">Contribute to KoNLTK project</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/konltk/konlp/wiki/FQA">FAQ</a></li>
@@ -125,10 +164,9 @@
             <form class="search" action="search.html" method="get">
                 <input type="text" name="q" />
                 <input type="submit" value="Go" />
-                <input type="hidden" name="check_keywords" value="yes" />
-                <input type="hidden" name="area" value="default" />
             </form>
           </div>
+
         </div>
         <div class="clearer"></div>
       </div>
@@ -156,7 +194,7 @@
           
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, KoNLTK Project.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.4.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
     </div>
         </div>
         <div class="clearer"></div>
