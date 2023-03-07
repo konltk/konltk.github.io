@@ -1,20 +1,18 @@
 
 <!DOCTYPE html>
 
-<html lang="en">
+<html>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>KoNLP 설치하기 &#8212; KoNLP 0.0.24 documentation</title>
+    <title>KoNLP 설치하기 &#8212; KoNLP 0.0.52 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/agogo.css" />
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Installing KoNLTK project Data" href="data.html" />
@@ -23,7 +21,7 @@
     <div class="header-wrapper" role="banner">
       <div class="header">
         <div class="headertitle"><a
-          href="index.html">KoNLP 0.0.24 documentation</a></div>
+          href="index.html">KoNLP 0.0.52 documentation</a></div>
         <div class="rel" role="navigation" aria-label="related navigation">
           <a href="news.html" title="KoNLP News"
              accesskey="P">previous</a> |
@@ -46,16 +44,16 @@
           <div class="body" role="main">
             
   <section id="konlp">
-<h1>KoNLP 설치하기<a class="headerlink" href="#konlp" title="Permalink to this heading">¶</a></h1>
+<h1>KoNLP 설치하기<a class="headerlink" href="#konlp" title="Permalink to this headline">¶</a></h1>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">konlp는</span> <span class="n">현재</span> <span class="n">python</span> <span class="mf">3.5</span><span class="n">를</span> <span class="n">지원합니다</span><span class="o">.</span>
 </pre></div>
 </div>
 <section id="unix-ubuntu-14-04-16-04">
-<h2>Unix (Ubuntu 14.04, 16.04)<a class="headerlink" href="#unix-ubuntu-14-04-16-04" title="Permalink to this heading">¶</a></h2>
+<h2>Unix (Ubuntu 14.04, 16.04)<a class="headerlink" href="#unix-ubuntu-14-04-16-04" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li><p>종속 패키지 설치</p></li>
 </ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get install python3-dev
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>python3-dev
 </pre></div>
 </div>
 <ol class="arabic" start="2">
@@ -64,23 +62,23 @@
 <div><ol class="arabic simple">
 <li><p>pip</p></li>
 </ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo pip3 install konlp
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>pip3<span class="w"> </span>install<span class="w"> </span>konlp
 </pre></div>
 </div>
 <ol class="arabic simple" start="2">
 <li><p>github</p></li>
 </ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo git clone https://github.com/konltk/konlp
-$ <span class="nb">cd</span> konlp
-$ sudo python3 setup.py install
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/konltk/konlp
+$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>konlp
+$<span class="w"> </span>sudo<span class="w"> </span>python3<span class="w"> </span>setup.py<span class="w"> </span>install
 </pre></div>
 </div>
 </div></blockquote>
 </li>
 <li><p>실행하기</p></li>
 </ol>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">konlp.kma.klt2000</span> <span class="kn">import</span> <span class="n">klt2000</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">k</span> <span class="o">=</span> <span class="n">klt2000</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">konlp.kma.klt2023</span> <span class="kn">import</span> <span class="n">klt2023</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">k</span> <span class="o">=</span> <span class="n">klt2023</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">k</span> <span class="o">=</span> <span class="n">k</span><span class="o">.</span><span class="n">pos</span><span class="p">(</span><span class="s1">&#39;나는 사과를 먹었다&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">k</span> <span class="o">=</span> <span class="n">k</span><span class="o">.</span><span class="n">morphs</span><span class="p">(</span><span class="s1">&#39;나는 사과를 먹었다&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">k</span> <span class="o">=</span> <span class="n">k</span><span class="o">.</span><span class="n">nouns</span><span class="p">(</span><span class="s1">&#39;나는 사과를 먹었다&#39;</span><span class="p">)</span>
@@ -88,11 +86,11 @@ $ sudo python3 setup.py install
 </div>
 </section>
 <section id="windows">
-<h2>Windows<a class="headerlink" href="#windows" title="Permalink to this heading">¶</a></h2>
+<h2>Windows<a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h2>
 <p>…</p>
 </section>
 <section id="installing-third-party-software">
-<h2>Installing Third-Party Software<a class="headerlink" href="#installing-third-party-software" title="Permalink to this heading">¶</a></h2>
+<h2>Installing Third-Party Software<a class="headerlink" href="#installing-third-party-software" title="Permalink to this headline">¶</a></h2>
 <p>…</p>
 </section>
 </section>
@@ -160,7 +158,7 @@ $ sudo python3 setup.py install
           
     <div class="footer" role="contentinfo">
         &#169; Copyright 2017, KoNLTK Project.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.3.0.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.4.0.
     </div>
         </div>
         <div class="clearer"></div>
